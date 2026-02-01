@@ -38,7 +38,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
 }));
 
 // Swagger JSON
-app.get('/api-docs.json', (req, res) => {
+app.get('/api-docs.json', (_req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.send(swaggerSpec);
 });
@@ -51,12 +51,12 @@ app.use('/api/meals', mealRoutes);
 app.use('/api/bmi', bmiRoutes);
 
 // Health check
-app.get('/health', (req, res) => {
+app.get('/health', (_req, res) => {
   res.json({ status: 'OK', message: 'Healio API is running' });
 });
 
 // Error handling middleware
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   logger.error(`${err.name}: ${err.message}`, { stack: err.stack });
   res.status(500).json({
     success: false,

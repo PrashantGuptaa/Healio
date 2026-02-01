@@ -14,14 +14,11 @@ import {
 } from 'antd';
 import { 
   PlusOutlined, 
-  FileTextOutlined, 
   DeleteOutlined, 
-  ArrowLeftOutlined,
   CalendarOutlined,
   ClockCircleOutlined,
   FireOutlined
 } from '@ant-design/icons';
-import { useNavigate } from 'react-router-dom';
 import dayjs, { Dayjs } from 'dayjs';
 import { getFoods, logMeal, getMealsByDate, deleteMeal } from '../services/api';
 
@@ -52,7 +49,6 @@ interface Meal {
 }
 
 const FoodLogger: React.FC = () => {
-  const navigate = useNavigate();
   const [form] = Form.useForm();
   const [foods, setFoods] = useState<Food[]>([]);
   const [meals, setMeals] = useState<Meal[]>([]);

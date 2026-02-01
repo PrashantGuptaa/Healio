@@ -6,9 +6,6 @@ import {
   DatabaseOutlined,
   FileTextOutlined,
   DashboardOutlined,
-  HeartOutlined,
-  RiseOutlined,
-  FallOutlined,
   ArrowRightOutlined,
   PlayCircleOutlined,
   CheckCircleOutlined,
@@ -17,7 +14,7 @@ import {
   LineChartOutlined,
 } from '@ant-design/icons';
 
-const { Title, Paragraph, Text } = Typography;
+const { Title, Paragraph } = Typography;
 
 const LandingPage: React.FC = () => {
   const navigate = useNavigate();

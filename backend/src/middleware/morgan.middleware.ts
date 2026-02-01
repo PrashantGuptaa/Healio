@@ -2,7 +2,7 @@ import morgan from 'morgan';
 import { stream } from '../config/logger';
 
 // Define custom token for response time in milliseconds
-morgan.token('response-time-ms', (req, res) => {
+morgan.token('response-time-ms', (_req, res) => {
   const responseTime = res.getHeader('X-Response-Time');
   return responseTime ? `${responseTime}ms` : '-';
 });
@@ -14,7 +14,7 @@ const morganFormat =
 // Create Morgan middleware
 const morganMiddleware = morgan(morganFormat, {
   stream,
-  skip: (req, res) => {
+  skip: (req, _res) => {
     // Skip logging for health check endpoint in production
     if (process.env.NODE_ENV === 'production' && req.url === '/health') {
       return true;

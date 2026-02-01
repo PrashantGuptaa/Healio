@@ -1,10 +1,11 @@
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import Food from '../models/Food.model';
+// Commented out to avoid build errors - uncomment when needed for seeding
+// import mongoose from 'mongoose';
+// import dotenv from 'dotenv';
+// import Food from '../models/Food.model';
 
-dotenv.config();
+// dotenv.config();
 
-const comprehensiveFoods = [
+export const comprehensiveFoods = [
   // PROTEINS - Meat & Poultry
   {
     name: 'Chicken Breast',

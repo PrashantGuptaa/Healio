@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import jwt, { SignOptions } from 'jsonwebtoken';
 import User from '../models/User.model';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
-const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '7d';
+const JWT_SECRET: string = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_EXPIRES_IN: string = process.env.JWT_EXPIRES_IN || '7d';
 
 // Register user
 export const register = async (req: Request, res: Response): Promise<void> => {
@@ -32,9 +32,11 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     });
 
     // Generate token
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
-      expiresIn: JWT_EXPIRES_IN,
-    });
+    const token = jwt.sign(
+      { userId: user._id }, 
+      JWT_SECRET, 
+      { expiresIn: JWT_EXPIRES_IN } as SignOptions
+    );
 
     res.status(201).json({
       success: true,
@@ -83,9 +85,11 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     }
 
     // Generate token
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
-      expiresIn: JWT_EXPIRES_IN,
-    });
+    const token = jwt.sign(
+      { userId: user._id }, 
+      JWT_SECRET, 
+      { expiresIn: JWT_EXPIRES_IN } as SignOptions
+    );
 
     res.status(200).json({
       success: true,
@@ -109,7 +113,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 };
 
 // Google OAuth callback (placeholder for when enabled)
-export const googleCallback = async (req: Request, res: Response): Promise<void> => {
+export const googleCallback = async (_req: Request, res: Response): Promise<void> => {
   try {
     // This will be implemented when Google Auth is enabled
     if (process.env.ENABLE_GOOGLE_AUTH !== 'true') {
